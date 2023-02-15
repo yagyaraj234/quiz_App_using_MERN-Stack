@@ -1,4 +1,6 @@
 import React from 'react'
+import Questions from './Questions';
+
 
 const Quiz = () => {
 
@@ -14,7 +16,11 @@ const Quiz = () => {
       <h1 className='heading'>Quiz</h1>
 
       {/* Display questions  */}
+      <Questions/>
 
+
+
+      {/* Buttons  */}
       <div className='grid'>
         <button className='btn prev' onClick={onPrev}>Prev</button>
         <button className='btn next' onClick={onNext}>Next</button>
