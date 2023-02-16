@@ -1,15 +1,47 @@
-.container{
+.result-container{
     width: 50%;
-    background: red;
     margin: auto;
     padding: 2rem;
 }
 
-.flex-center{
-    display: flex;
-    justify-content: center;
+.user{
+    font-size: 1.2rem;
 }
 
-.user{
-    font-size: 2rem;
+.bold{
+    font-weight: 600;
+}
+.result{
+    border:2px solid black;
+    padding: 2rem;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+
+ /* Result Table   */
+
+ table{
+    border: 2px solid black;
+    width: 100%;
+    text-align: center;
+ }
+ .table-head{
+    font-weight: 600;
+    padding: 40px 0px;
+    background-color:black;
+    color: white;
+ }
+
+ .table-body{
+    font-size: 1.1rem;
+}
+.p-result{
+    margin-top: 2rem;
+}
+td{   
+    border: 2px solid black;
 }
