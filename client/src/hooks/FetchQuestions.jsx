@@ -1,6 +1,7 @@
 // fetch question hook 
 
-import { set } from "immer/dist/internal";
+import data from "../database/data";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as Action from '../redux/questionReducer'
 
@@ -25,7 +26,7 @@ export const useFetchQuestion =()=>{
                     setGetData(prev=>({...prev,apiData :question}))
                     dispatch(Action.startExamAction(question));
                 }else{
-                    throw new error('No new Question available');
+                    throw new Error('No  Question available');
                 }
             }catch(error){
                 setGetData(prev=>({...prev,isLoading:false}))
