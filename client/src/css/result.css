@@ -1,0 +1,15 @@
+.container{
+    width: 50%;
+    background: red;
+    margin: auto;
+    padding: 2rem;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+.user{
+    font-size: 2rem;
+}
