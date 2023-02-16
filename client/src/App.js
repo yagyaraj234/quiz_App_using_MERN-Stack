@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css';
 
 import {Home,Result,Quiz} from './components/index'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';

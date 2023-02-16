@@ -49,7 +49,7 @@
   display: flex;
   justify-content:space-between;
   margin: auto;
-  margin-top: 5rem;
+  /* margin-top: 10rem; */
 }
 
 .btn{
@@ -59,6 +59,7 @@
   border-radius: 6px;
   border: 1px solid gray;
   cursor: pointer;
+  margin-top: 3rem;
 }
 .prev{
   background: rgb(91, 211, 11);
@@ -73,39 +74,14 @@
 /* questions  */
 
  .s-question{
-  margin-left:2rem;
+  margin-left:3rem;
 } 
 
 .questions{
   width: 60%;
   margin: auto;
-  background: red;
-  padding: 2rem;
+  margin-bottom: 3rem;
 }
-
-
-/* input radio  */
-
-/* input[type=radio]:checked ~ .check{
-  border: 5px solid green;
-}
-
-input[type=radio]:checked ~ .check::before{
-  background: green;
-}
-
-input[type=radio]:checked ~ .option{
-  color: green;
-}
-
-.checked{
-  border: 5px solid green !important;
-}
-
-.checked::before{
-  background: green;
-} */
-
 
 :root{
   --primary-color: #0DFF92;
@@ -114,13 +90,13 @@ input[type=radio]:checked ~ .option{
 }
 
 ul li{
-  color: #AAAAAA;
+  color: black;
   display: block;
   position: relative;
   float: left;
   width: 100%;
   height: 100px;
-	border-bottom: 1px solid #333;
+	border-bottom: 1px solid #333333ac;
 }
 
 ul li input[type=radio]{
@@ -138,11 +114,11 @@ ul li label{
   height: 30px;
   z-index: 9;
   cursor: pointer;
-  -webkit-transition: all 0.25s linear;
+  /* -webkit-transition: all 0.25s linear; */
 }
 
 ul li:hover label{
-	color: #FFFFFF;
+	color:var(--dark-color);
 }
 
 ul li .check{

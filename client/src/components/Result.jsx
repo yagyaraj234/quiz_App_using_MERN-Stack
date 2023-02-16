@@ -2,7 +2,13 @@ import React from 'react'
 
 const Result = () => {
   return (
-    <div>Result</div>
+    <div>
+
+      <h1 className='heading'>Result </h1>
+
+
+
+    </div>
   )
 }
 
