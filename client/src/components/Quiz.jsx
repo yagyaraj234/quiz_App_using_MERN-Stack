@@ -2,23 +2,29 @@ import React, { useEffect } from 'react'
 import Questions from './Questions';
 
 // redux store import 
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
+import questionReducer, { moveNextAction, movePrevAction } from '../redux/questionReducer';
+import {FetchQuestion,ques} from '../hooks/FetchQuestions'
 
 
 const Quiz = () => { 
 
-  const state = useSelector(state=>state);
+  const trace = useSelector(state=>state.questions.trace);
+
+  const dispatch = useDispatch();
 
   useEffect(()=>{
-    // console.log(state);
+    console.log(trace); 
     
   })
 
   function onNext(){
-    console.log('On Next click');
+    dispatch(moveNextAction())
   }
   function onPrev(){
-    console.log('On Prev click');
+    if(trace>0){
+      dispatch(movePrevAction())
+    }
   }
 
   return (
@@ -27,8 +33,6 @@ const Quiz = () => {
 
       {/* Display questions  */}
       <Questions/>
-
-
 
       {/* Buttons  */}
       <div className='grid'>
@@ -40,4 +44,4 @@ const Quiz = () => {
   )
 }
 
-export default Quiz
+export default Quiz;
