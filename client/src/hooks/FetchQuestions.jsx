@@ -15,7 +15,7 @@ export const useFetchQuestion =()=>{
     })
 
     useEffect(() => {
-      setGetData(prev=>({...prev,isLoaing:true}))
+      setGetData(prev=>({...prev,isLoading:true}))
 
       (async()=>{
             try{
@@ -23,7 +23,7 @@ export const useFetchQuestion =()=>{
                 if(question.length>0){
 
                     setGetData(prev=>({...prev,isLoading:false}))
-                    setGetData(prev=>({...prev,apiData :question}))
+                    setGetData(prev=>({...prev,apiData :question}));
                     dispatch(Action.startExamAction(question));
                 }else{
                     throw new Error('No  Question available');
