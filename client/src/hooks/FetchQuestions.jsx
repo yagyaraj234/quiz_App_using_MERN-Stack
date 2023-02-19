@@ -14,7 +14,7 @@ export const useFetchQuestion =()=>{
     })
 
     useEffect(() => {
-      setGetData(prev=>({...prev,isLoading:true}))
+      setGetData(prev=>({...prev,isLoading:true}));
 
       (async()=>{
             try{
@@ -31,7 +31,7 @@ export const useFetchQuestion =()=>{
                 setGetData(prev=>({...prev,isLoading:false}))
                 setGetData(prev=>({...prev,serverError:error}))
             }
-      })()
+      })();
     },[dispatch]);
     return[getData,setGetData];  
 }

@@ -13,6 +13,8 @@ const Questions = () => {
 
   useEffect(()=>{
     console.log(isLoading);
+    // console.log(apiData);
+    // console.log(serverError);
   })
 
   function onSelect() {
