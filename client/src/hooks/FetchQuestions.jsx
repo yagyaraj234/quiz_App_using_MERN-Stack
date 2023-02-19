@@ -1,5 +1,4 @@
 // fetch question hook 
-
 import data from "../database/data";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -7,7 +6,7 @@ import * as Action from '../redux/questionReducer'
 
 export const useFetchQuestion =()=>{
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [getData,setGetData]=useState({
       isLoading:false,
       apiData :[],
@@ -34,7 +33,5 @@ export const useFetchQuestion =()=>{
             }
       })()
     },[dispatch]);
-
-    return[getData,setGetData];
-    
+    return[getData,setGetData];  
 }
