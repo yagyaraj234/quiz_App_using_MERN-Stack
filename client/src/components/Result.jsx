@@ -1,8 +1,20 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
+import { resetResultAction } from '../redux/resultReducer';
 import {ResultTable} from './index'
+import {resetAllAction} from '../redux/questionReducer'
+
 
 const Result = () => {
+
+  const dispatch =useDispatch()
+  function onRestart(){
+    // console.log('on Restart');
+    dispatch(resetAllAction());
+    dispatch(resetResultAction());
+  }
+
   return (
     <div className='result-container'>
 
@@ -38,7 +50,7 @@ const Result = () => {
       </div>
 
     <div className='start'>
-      <Link  to='/' className='button'>Restart</Link>
+      <Link  to='/' className='button' onClick={onRestart}>Restart</Link>
     </div>
 
     <div className="container">

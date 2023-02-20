@@ -16,7 +16,7 @@ const Home = () => {
         <li className='list-items'>Without username you cannot move forward to quiz section.</li>
     </ol>
     <form id='form'>    
-    <input ref={inputRef} className='username' type="text"  placeholder='Enter your username'/>
+    <input required ref={inputRef} className='username' type="text"  placeholder='Enter your username'/>
     </form>
     <Link className='button' to={'quiz'}> Start Quiz
     {/* <button type='submit'>Start Quiz</button> */}

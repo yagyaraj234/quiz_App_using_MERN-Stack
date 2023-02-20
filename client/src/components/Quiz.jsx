@@ -3,13 +3,18 @@ import Questions from './Questions';
 
 // redux store import 
 import {useSelector,useDispatch} from 'react-redux'
-import questionReducer, { moveNextAction, movePrevAction } from '../redux/questionReducer';
-import {FetchQuestion,ques} from '../hooks/FetchQuestions'
+import { moveNextAction, movePrevAction } from '../redux/questionReducer';
+import { pushAnswer } from '../hooks/setResult';
+
+import {Navigate} from 'react-router-dom';
+import { useState } from 'react';
 
 
 const Quiz = () => { 
 
-  const trace = useSelector(state=>state.questions.trace);
+  const [check, setCheck] = useState(undefined)
+  const result =useSelector(state=>state.result.result);
+  const {queue, trace} = useSelector(state=>state.questions);
 
   const dispatch = useDispatch();
 
@@ -19,7 +24,11 @@ const Quiz = () => {
   })
 
   function onNext(){
-    dispatch(moveNextAction())
+    if(trace<queue.length){
+      dispatch(moveNextAction());
+
+      dispatch(pushAnswer(check))
+    }
   }
   function onPrev(){
     if(trace>0){
@@ -27,12 +36,22 @@ const Quiz = () => {
     }
   }
 
+  function onChecked(check){
+    setCheck(check);
+  }
+
+  // finishing Exam After last question
+
+  if(result.length && result.length >=queue.length ){
+    return  <Navigate to={'/result'} replace="true"></Navigate>
+  }
+
   return (
     <div className='conatiner'>
       <h1 className='heading'>Quiz</h1>
 
       {/* Display questions  */}
-      <Questions/>
+      <Questions onChecked={onChecked}/>
 
       {/* Buttons  */}
       <div className='grid'>
