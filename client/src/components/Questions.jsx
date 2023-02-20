@@ -3,7 +3,8 @@ import React, {useEffect, useState } from 'react';
   // Custom Hook 
 import { useFetchQuestion } from '../hooks/FetchQuestions';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateResultAction } from '../redux/resultReducer';
+import { updateResult } from '../hooks/setResult';
+
 
 
 export default function Questions({onChecked})  {
@@ -17,14 +18,12 @@ export default function Questions({onChecked})  {
   const dispatch =useDispatch();
 
   useEffect(()=>{
-    // console.log({trace,checked});
-    dispatch(updateResultAction({trace,checked}));  
+    dispatch(updateResult({trace,checked}));  
   },[checked])
 
   function onSelect(i) {
     onChecked(i);
     setChecked(i);
-    // dispatch(updateResul)
     
   }
 

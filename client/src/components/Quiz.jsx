@@ -25,8 +25,7 @@ const Quiz = () => {
 
   function onNext(){
     if(trace<queue.length){
-      dispatch(moveNextAction());
-      
+      dispatch(moveNextAction());    
       if(result.length <=trace){    
       dispatch(pushAnswer(check))
       }

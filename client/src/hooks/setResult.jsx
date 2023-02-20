@@ -9,3 +9,11 @@ export const pushAnswer =(result)=>async (dispatch) =>{
     }
 
 }
+
+export const updateResult =(index)=> async (dispatch) =>{
+    try {
+        dispatch(Action.updateResultAction(index))
+    } catch (error) {
+        
+    }
+}
