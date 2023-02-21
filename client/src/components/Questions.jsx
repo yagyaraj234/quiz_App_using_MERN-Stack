@@ -11,7 +11,7 @@ export default function Questions({ onChecked }) {
 
   const [checked, setChecked] = useState(undefined);
   const { trace } = useSelector(state => state.questions);
-  const { result } = useSelector(state => state.result.result);
+  const result  = useSelector(state => state.result.result);
   const [{ isLoading, apiData, serverError }] = useFetchQuestion();
 
 
@@ -24,7 +24,8 @@ export default function Questions({ onChecked }) {
 
   function onSelect(i) {
     onChecked(i);
-    setChecked(i);
+    setChecked(i);  
+    dispatch(updateResult({ trace, checked }));
 
   }
 
@@ -48,7 +49,6 @@ export default function Questions({ onChecked }) {
           ))
         }
       </ul>
-
 
     </div>
   )
