@@ -1,11 +1,18 @@
 import React from 'react';
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setUserId } from '../redux/resultReducer';
 import{Quiz,Result} from './index'
 
 const Home = () => {
-
-    const inputRef=useRef(null)
+  const inputRef =useRef(null)
+  const dispatch =useDispatch()
+  function  startQuiz() {
+    if(inputRef.current?.value){
+      dispatch(setUserId(inputRef.current?.value));
+    }
+  }
   return (
     <>
     <h1 className='heading'>Quiz</h1>
@@ -18,8 +25,7 @@ const Home = () => {
     <form id='form'>    
     <input required ref={inputRef} className='username' type="text"  placeholder='Enter your username'/>
     </form>
-    <Link className='button' to={'quiz'}> Start Quiz
-    {/* <button type='submit'>Start Quiz</button> */}
+    <Link  onClick={startQuiz} className='button' to={'quiz'}> Start Quiz
     </Link>
     </>
   )
