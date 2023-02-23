@@ -19,11 +19,13 @@ export default[
     },
     {
         id:3,
-        question:'how to include method',
+        question:'how to display alert on browser',
         options:[
-            'Object-',
-            'Object',
-            'Procedural',
+            'Console.log()',
+            'Window.alert()',
+            'Display()',
         ]
     },
 ]
+
+export const answers=[0,0,1];

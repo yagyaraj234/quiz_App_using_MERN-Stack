@@ -30,6 +30,9 @@ const Quiz = () => {
       dispatch(pushAnswer(check))
       }
     }
+
+    // reset the value of the checked variable
+    setCheck(undefined);
   }
   function onPrev(){
     if(trace>0){
