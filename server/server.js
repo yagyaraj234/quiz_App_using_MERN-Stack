@@ -1,33 +1,46 @@
-import express from 'express' ;
-import morgan from 'morgan';
-import cors from 'cors'  ;
-import router from './router/route.js';
-import { config } from 'dotenv';  
+import express from "express";
+import morgan from "morgan";
+import cors from "cors";
+import router from "./router/route.js";
+import { config } from "dotenv";
+
+// import Connection Files
+import connect from "./database/conn.js";
 const app = express();
 
-
-app.use(morgan('tiny'));
+app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 config();
 // application port
 
-const port =process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
 
-// Routes 
+connect();
+// Routes
 
-app.use('/api',router);  // For APis
+app.use("/api", router); // For APis
 
-app.get('/',(req,res)=>{
+app.get("/", (req, res) => {
+  try {
+    res.json("Get Request");
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+// Start server when we have valid server
+
+connect()
+  .then(() => {
     try {
-        res.json("Get Request")
+        app.listen(port,()=>{
+            console.log(`Server connnected to ${port}`); 
+        })
     } catch (error) {
-        res.json(error)
+        console.log("Cannot connect to valid server")
     }
-})
-
-
-app.listen(port,()=>{
-
-    console.log(`Server connnected to ${port}`);
-})
+  })
+  .catch((error) => {
+    console.log("Invalid Database Connection");
+  });

@@ -1,33 +1,50 @@
-//  Get all question 
+import Questions from "../models/questionSchema.js";
+import Result from "../models/resultSchema.js";
 
-export async function getQuestions(req,res){
-    res.json('Get Questions')
+import questions, { answers } from "../database/data.js";
+
+//  Get all question
+
+export async function getQuestions(req, res) {
+  try {
+    const q = await Questions.find();
+    res.json(q);
+  } catch (error) {
+    res.json(error);
+  }
 }
 
-// insert all question 
+// insert all question
 
-export async function  insertQuestions(req,res){
-    res.json('insert Questions')
+export async function insertQuestions(req, res) {
+  try {
+    Questions.insertMany(
+      { questions, answers },
+      function (err, data) {
+        res.json({ msg: "Data Saved Succesfully....!" });
+      }
+    );
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
+// Delete all questions
 
-// Delete all questions 
-
-
-export async function dropQuestions(req,res){
-    res.json('delete');
+export async function dropQuestions(req, res) {
+  res.json("delete");
 }
 
-// get all result 
+// get all result
 
-export async function getResult(req,res){
-    res.json('result');
+export async function getResult(req, res) {
+  res.json("result");
 }
 // store the result
-export async function storeResult(req,res){
-    res.json('result api post');
+export async function storeResult(req, res) {
+  res.json("result api post");
 }
- // delete all result
-export async function dropResult(req,res){
-    res.json('delete result api post');
+// delete all result
+export async function dropResult(req, res) {
+  res.json("delete result api post");
 }
