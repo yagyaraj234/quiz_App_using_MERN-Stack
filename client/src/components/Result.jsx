@@ -6,6 +6,7 @@ import { attemptsNumber, flagResult, earnPoints_Number } from '../helper/helper'
 
 import { resetResultAction } from '../redux/resultReducer';
 import { resetAllAction } from '../redux/questionReducer'
+import { usePublishResult } from '../hooks/setResult';
 
 const Result = () => {
 
@@ -17,7 +18,9 @@ const Result = () => {
   const earnPoints = earnPoints_Number(result, answers, 10)
   const flag = flagResult(totalPoints, earnPoints);
 
-  
+  // store user data
+
+  usePublishResult({ result, username: userId, attempts, points: earnPoints, achived: flag ? "Passed" : "Fail" })
 
 
   function onRestart() {
@@ -31,7 +34,7 @@ const Result = () => {
       <div className='result flex-center'>
         <div className='flex'>
           <span className='user'>Username</span>
-          <span className='bold'>Daily Tuition</span>
+          <span className='bold'>{userId}</span>
         </div>
         <div className='flex'>
           <span className='user'>Total Questions : </span>
