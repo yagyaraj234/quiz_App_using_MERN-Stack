@@ -21,8 +21,9 @@ export const useFetchQuestion = () => {
             try {
                 let question = await data;
                 const q = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data);
-                if (question.length > 0) {
 
+
+                if (question.length > 0) {
                     setGetData(prev => ({ ...prev, isLoading: false }))
                     setGetData(prev => ({ ...prev, apiData: { question, answers } }));
                     dispatch(Action.startExamAction({ question, answers }));

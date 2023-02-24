@@ -17,12 +17,9 @@ export async function getQuestions(req, res) {
 
 export async function insertQuestions(req, res) {
   try {
-    Questions.insertMany(
-      { questions, answers },
-      function (err, data) {
-        res.json({ msg: "Data Saved Succesfully....!" });
-      }
-    );
+    Questions.insertMany({ questions, answers }, function (err, data) {
+      res.json({ msg: "Data Saved Succesfully....!" });
+    });
   } catch (error) {
     res.json({ error });
   }
@@ -31,13 +28,12 @@ export async function insertQuestions(req, res) {
 // Delete all questions
 
 export async function dropQuestions(req, res) {
-   
- try {
+  try {
     await Questions.deleteMany();
-    res.json({msg : "All Questions are deleted"})
- } catch (error) {
-    console.log({error})
- }
+    res.json({ msg: "All Questions are deleted" });
+  } catch (error) {
+    console.log({ error });
+  }
 }
 
 // get all result
@@ -45,31 +41,35 @@ export async function dropQuestions(req, res) {
 export async function getResult(req, res) {
   try {
     const r = await Results.find();
-    res.json(r)
- } catch (error) {
-     res.json({error})
- }
+    res.json(r);
+  } catch (error) {
+    res.json({ error });
+  }
 }
+
 // Post/store the result
 export async function storeResult(req, res) {
-    try {
-       const {username, result, attempts, points, achived}= req.body;
-       if(!username && !result) throw Error('Data not Provided...!')
+  try {
+    const { username, result, attempts, points, achived } = req.body;
+    if (!username && !result) throw Error("Data not Provided...!");
 
-       Results.create({username, result, attempts, points, achived},function(err,data){
-        res.json({msg: "Results Saved Succesfully"})
-       })
-     } catch (error) {
-         res.json({error})
-     }
+    Result.create(
+      { username, result, attempts, points, achived },
+      function (err, data) {
+        res.json({ msg: "Results Saved Succesfully...." });
+      }
+    );
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 // delete all result
 export async function dropResult(req, res) {
-    try {
-        await Results.deleteMany();
-        res.json({msg: "Result Deleted succesfully"})
-    } catch (error) {
-        res.json({error});
-    }
+  try {
+    await Result.deleteMany();
+    res.json({ msg: "Result Deleted succesfully....." });
+  } catch (error) {
+    res.json({ error });
+  }
 }
