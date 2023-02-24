@@ -1,6 +1,5 @@
 import Questions from "../models/questionSchema.js";
 import Result from "../models/resultSchema.js";
-
 import questions, { answers } from "../database/data.js";
 
 //  Get all question
@@ -35,7 +34,7 @@ export async function dropQuestions(req, res) {
    
  try {
     await Questions.deleteMany();
-    res.json({msg : "All Questions are delted"})
+    res.json({msg : "All Questions are deleted"})
  } catch (error) {
     console.log({error})
  }
@@ -46,7 +45,7 @@ export async function dropQuestions(req, res) {
 export async function getResult(req, res) {
   try {
     const r = await Results.find();
-    res.json({msg: "Results"})
+    res.json(r)
  } catch (error) {
      res.json({error})
  }
@@ -54,10 +53,10 @@ export async function getResult(req, res) {
 // Post/store the result
 export async function storeResult(req, res) {
     try {
-       const {username, result, attempts, points, achieved}= req.body;
-       if(!username && !result) throw Error('Data not Provided')
+       const {username, result, attempts, points, achived}= req.body;
+       if(!username && !result) throw Error('Data not Provided...!')
 
-       Results.create({username, result, attempts, points, achieved},function(err,data){
+       Results.create({username, result, attempts, points, achived},function(err,data){
         res.json({msg: "Results Saved Succesfully"})
        })
      } catch (error) {
@@ -69,7 +68,7 @@ export async function storeResult(req, res) {
 export async function dropResult(req, res) {
     try {
         await Results.deleteMany();
-        res.json({msg: "REsult Deleted succesfully"})
+        res.json({msg: "Result Deleted succesfully"})
     } catch (error) {
         res.json({error});
     }

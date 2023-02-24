@@ -5,9 +5,9 @@ import * as controller from "../controllers/controller.js";
 
 // Question Routes
 
-router.get("/questions", controller.getQuestions);
+// router.get("/questions", controller.getQuestions);
 
-router.post("/questions", controller.insertQuestions);
+// router.post("/questions", controller.insertQuestions);
 
 router
   .route("/questions")
@@ -20,4 +20,6 @@ router
   .get(controller.getResult)
   .post(controller.storeResult)
   .delete(controller.dropResult);
+
+  
 export default router;
