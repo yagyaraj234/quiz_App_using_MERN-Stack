@@ -1,57 +1,59 @@
 // fetch question hook 
-import data,{answers} from "../database/data";
+import data, { answers } from "../database/data";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as Action from '../redux/questionReducer'
+import { getServerData } from "../helper/helper";
 
-export const useFetchQuestion =()=>{
+export const useFetchQuestion = () => {
 
     const dispatch = useDispatch();
-    const [getData,setGetData]=useState({
-      isLoading:false,
-      apiData :[],
-    serverError:null
+    const [getData, setGetData] = useState({
+        isLoading: false,
+        apiData: [],
+        serverError: null
     })
 
     useEffect(() => {
-      setGetData(prev=>({...prev,isLoading:true}));
+        setGetData(prev => ({ ...prev, isLoading: true }));
 
-      (async()=>{
-            try{
-                let question =await data;
-                if(question.length>0){
+        (async () => {
+            try {
+                let question = await data;
+                const q = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data);
+                if (question.length > 0) {
 
-                    setGetData(prev=>({...prev,isLoading:false}))
-                    setGetData(prev=>({...prev,apiData :{question,answers}}));
-                    dispatch(Action.startExamAction({question,answers}));
-                }else{
+                    setGetData(prev => ({ ...prev, isLoading: false }))
+                    setGetData(prev => ({ ...prev, apiData: { question, answers } }));
+                    dispatch(Action.startExamAction({ question, answers }));
+                } else {
                     throw new Error('No  Question available');
                 }
-            }catch(error){
-                setGetData(prev=>({...prev,isLoading:false}))
-                setGetData(prev=>({...prev,serverError:error}))
+            } catch (error) {
+                setGetData(prev => ({ ...prev, isLoading: false }))
+                setGetData(prev => ({ ...prev, serverError: error }))
             }
-      })();
-    },[dispatch]);
-    return[getData,setGetData];  
+        })();
+    }, [dispatch]);
+    return [getData, setGetData];
 }
 
 // Move Action Dispatch function
 
-export const MoveNextQuestion =() => async(dispatch)=>{
+export const MoveNextQuestion = () => async (dispatch) => {
     try {
         dispatch(Action.moveNextAction())
     } catch (error) {
         console.log(error);
-        
+
     }
 }
 
-export const MovePrevQuestion =() => async(dispatch)=>{
+export const MovePrevQuestion = () => async (dispatch) => {
     try {
         dispatch(Action.movePrevAction())
     } catch (error) {
         console.log(error);
-        
+
     }
 }
